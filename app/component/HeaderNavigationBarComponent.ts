@@ -37,4 +37,7 @@ export class HeaderNavigationBarComponent {
         expect(await this.cart.innerText()).toEqual('Your shopping cart is empty');
     }
 
+    async openDashboadr() {
+        await this.page.goto('/dashboard')
+    }
 }
