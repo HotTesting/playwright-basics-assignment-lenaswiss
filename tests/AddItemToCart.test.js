@@ -4,6 +4,7 @@ import { LoginPage } from '../app/pages/LoginPage.ts';
 import { adminDetails } from '../data/UserDitails.ts';
 import { ShopPage } from '../app/pages/ShopPage.ts';
 import { CherryProductPage } from '../app/pages/CherryProductPage.ts'
+import { DashboardPage } from '../app/pages/DashboardPage.ts'
 
 test('Add an cherry to the Cart by the registered user.', async ({ page }) => {
     const startPage = new StartPage(page);
@@ -12,7 +13,9 @@ test('Add an cherry to the Cart by the registered user.', async ({ page }) => {
 
     const loginPage = new LoginPage(page);
     await loginPage.loginByAdmin(adminDetails.email, adminDetails.password);
-    await loginPage.header.clickOnShopLink();
+
+    const dashboardPage = new DashboardPage(page);
+    await dashboardPage.header.clickOnShopLink();
 
     const shopPage = new ShopPage(page);
     await shopPage.gotoCherryProductPage();

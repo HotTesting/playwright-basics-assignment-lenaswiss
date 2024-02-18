@@ -1,4 +1,4 @@
-import { Locator, Page } from "@playwright/test";
+import { Locator, Page, expect } from "@playwright/test";
 import { FooterBlockComponent } from "../component/FooterBlockComponent";
 import { HeaderNavigationBarComponent } from "../component/HeaderNavigationBarComponent";
 
@@ -29,6 +29,8 @@ export class RegisterPage {
         await this.lastNameInput.fill(lastName);
         await this.passwordInput.fill(password);
         await this.signupButton.click();
+        const message = 'You have signed up successfully! You will be receiving an email as well. Thank you!';
+        await expect(this.page.getByRole('heading', { name: message })).toBeVisible({ timeout: 2000 });
         await this.page.waitForURL(/\/dashboard/, { timeout: 2000 });
     }
 }

@@ -31,6 +31,8 @@ export class SellPage {
         await this.phoneInput.fill(seller.phone);
         await this.brandNameInput.fill(brandName);
         await this.businessDescriptionInput.fill(seller.businessDescription);
+        const message = `We received your request! we will reach you on your phone number ${seller.phone}!`;
         await this.submitButton.click();
+        await expect(this.page.getByRole('heading', { name: message })).toBeVisible();
     }
 }
